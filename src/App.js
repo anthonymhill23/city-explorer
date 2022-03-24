@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import axios from 'axios';
 import Weather from './Weather.js';
 import './App.css';
 import Map from './Map'
-import { Card } from 'react-bootstrap';
+
 class App extends React.Component {
 
   constructor(props) {

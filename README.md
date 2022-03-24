@@ -22,6 +22,22 @@
 
 ## Credit and Collaborations
 Day 1 : Tanesha Brester
+Day 2 :Christopher Yamas
+Day 3 : Mish Salazar, Ella Svete
+
+
+
+## Time Estimates
+
+Name of Feature: Map
+
+Estimated Time of completion: 4 hours
+
+Start time : 19:00 EST
+
+End time 22:51 EST (next day)
+
+TIme to complete : 23 hours. 
 
 
 
