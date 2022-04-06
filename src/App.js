@@ -19,11 +19,22 @@ class App extends React.Component {
   getLocation = async (e) => {
     try {
       let result = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_APIKEY}&q=${this.state.queryCity}&format=json`);
-      console.log(result);
-      this.setState({ locationObject: result.data[0], error: false }, this.getWeather);
+      this.setState({ locationObject: result.data[0], error: false });
     } catch (error) {
       console.error(error);
       console.log('there was an error');
+      this.setState({ error: true })
+    }
+    this.getWeather()
+  }
+
+  getWeather = async () => {
+    let city = this.state.locationObject.display_name.split(',')[0];
+    let url = `${process.env.REACT_APP_SERVERcd}/weather?city_name=${city}`;
+    try {
+      let results = await axios.get(url);
+      this.setState({ weather: results.data, error: false })
+    } catch (error) {
       this.setState({ error: true })
     }
   }
@@ -42,10 +53,10 @@ class App extends React.Component {
         <div>
           <div id="city-data">
             {this.state.locationObject.display_name ?
-            
-                <Map
-                  locationObject={this.state.locationObject} />
-              
+
+              <Map
+                locationObject={this.state.locationObject} />
+
               :
               <p>Search for a city to explore</p>}
             {this.state.weather.length > 0 && <Weather weather={this.state.weather} />}
@@ -66,15 +77,4 @@ class App extends React.Component {
 
 
 
-
-// getWeather = async () => {
-//   let city = this.state.locationObject.display_name.split(',')[0];
-//   let url = `${process.env.REACT_APP_APIKEY}/weather?city_name=${city}`;
-//   try {
-//     let results = await axios.get(url);
-//     this.setState({ weather: results.data, error: false })
-//   } catch (error) {
-//     this.setState({ error: true })
-//   }
-// } 
 export default App;
